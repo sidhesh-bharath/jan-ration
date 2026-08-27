@@ -1,10 +1,8 @@
 # JanRation
 
-JanRation is a responsive, multilingual hackathon prototype for a simpler public distribution system (PDS) experience across India.
+JanRation is a user-focused, multilingual PDS portal concept with a separate developer surface for Fair Price Shop and POS integrations. It is a non-official prototype: every profile, OTP, shop, map position, transaction, and complaint is synthetic.
 
 ## Run locally
-
-Requirements: Python 3.11 or newer.
 
 ```bash
 python3 -m venv .venv
@@ -13,28 +11,43 @@ python -m pip install -r requirements.txt
 uvicorn app:app --reload
 ```
 
-Open http://127.0.0.1:8000. Use the synthetic card reference `DEMO-7824` to view the demo entitlement.
+Open `http://127.0.0.1:8000`. The cardholder flow uses `DEMO-7824`; the dummy OTP is `246810`. The developer portal is at `/developers`, and FastAPI’s interactive OpenAPI reference is at `/docs`.
 
-Run the API tests with:
+Run the automated API checks:
 
 ```bash
 pytest -q
 ```
 
-## What is included
+## What is implemented
 
-- Responsive citizen-first landing page
-- Four core tasks: entitlement, shop discovery, request tracking, and grievance reporting
-- Synthetic FastAPI endpoints with clear demo-mode behavior
-- English, Hindi, and Tamil UI switching
-- A working, persistent plain-language reading bar that rewrites key service copy and announces its state to screen readers
-- High-contrast mode, keyboard-friendly controls, skip link, readable error states, and browser speech for the entitlement answer
-- Last-known entitlement rendering from device storage when the demo API is unavailable
-- Synthetic ONORC migrant mode, state-adapter catalog, queue estimates, stock freshness, accessibility and portability signals for shops
-- No external fonts, images, analytics, government logos, or live PDS calls
+- Consumer-first homepage with an explicit five-step cardholder journey.
+- Dummy OTP authentication before the ration dashboard can be opened.
+- Allocation bars showing total, withdrawn, and remaining Rice, Wheat, Toor dal, and Sugar.
+- Five-state synthetic shop directory with a responsive illustrative map, selectable markers, stock, queue, hours, accessibility, and ONORC signals.
+- Dedicated complaints section with pre-populated tickets, statuses, updates, and a new-ticket form.
+- English, Hindi, Tamil, Marathi, Bengali, Telugu, Kannada, and Malayalam language options.
+- High-contrast mode, system-only fonts, reduced-motion support, focus-visible states, keyboard-friendly controls, and no external font dependency.
+- Short-lived demo session state, clear data disclosures, offline fallbacks, and fixed-size loading states to avoid button flicker or layout shifts.
+- Developer portal showing the API contract, POS/shop-to-state-adapter architecture, India Stack-aligned intent, safety principles, and a link to interactive OpenAPI docs.
+- Favicon containing `ज`.
 
-Read [PROJECT_PLAN.md](PROJECT_PLAN.md) for the product thesis, portal analysis, architecture, roadmap, reliability plan, safety boundaries, and hackathon demo strategy.
+## API surface
 
-## Next engineering step
+- `POST /api/auth/request-otp`
+- `POST /api/auth/verify-otp`
+- `GET /api/dashboard` — requires the demo session token.
+- `GET /api/shops`
+- `POST /api/transactions` — synthetic POS lift event with idempotency.
+- `POST /api/webhooks/stock` — synthetic stock update with idempotency.
+- `GET /api/complaints`
+- `POST /api/complaints`
+- `GET /api/portability`
+- `GET /api/states`
+- `GET /api/health`
 
-Add Playwright smoke tests for the main mobile and desktop journeys, then extract the front-end copy into versioned translation files reviewed by native speakers. Only after that should you implement live state adapters behind the existing API contract.
+The real production version should place state adapters, identity/consent, idempotency, audit logging, rate limits, circuit breakers, and queues behind these stable contracts. Do not connect real citizen data to this prototype.
+
+## Deployment
+
+The repository includes a `Dockerfile`, `render.yaml`, and [DEPLOYMENT.md](DEPLOYMENT.md) for a public Render deployment. A single FastAPI service keeps the static portal, developer portal, mock API, and health check together for the hackathon.

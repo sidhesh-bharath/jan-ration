@@ -1,122 +1,114 @@
-# JanRation project plan
+# JanRation product and engineering plan
 
-## 1. Product thesis
+## Product position
 
-JanRation is a non-official concept for a single, citizen-first front door to India’s Public Distribution System (PDS). It does not replace state systems. It translates them into one predictable experience, then routes the request to the correct state adapter.
+JanRation is a citizen-first front door to India’s Public Distribution System. It is not an official government portal and it does not replace state ownership. The cardholder sees one calm experience; state-specific rules and source systems stay behind independently tested adapters.
 
-The primary problem is not that citizens lack a PDS website. It is that the journey is fragmented: a person has to know which state portal owns which task, understand government terms, tolerate inconsistent layouts, and recover when a service or device is unavailable. The winning demo should make one important journey feel dramatically easier: **“I need to know what I can collect, where I can collect it, and what to do if I don’t receive it.”**
+The hero problem is simple: a person should be able to answer three questions without portal-hopping:
 
-## 2. What the current portals reveal
+1. What can my household collect this month?
+2. Where can I collect it, and is that shop suitable today?
+3. What can I do if the quantity, shop, authentication, or service is wrong?
 
-Reference portals expose useful capabilities, but the citizen experience is split across them:
+## What changed in this overhaul
 
-- TNPDS, MahaFood, and AePDS/J&K represent separate state or state-linked entry points with different navigation, terminology, and service locations.
-- MahaFood lists common operations such as a new ration card, member/name/address changes, duplicate card copies, and Fair Price Shop registration, but these are linked out to another system. That creates context switching and makes it hard to know what happens next.
-- The J&K AePDS landing page is JavaScript-dependent in a basic fetch, which is a warning sign for low-end devices, older browsers, assistive technology, or a user on an unstable connection.
-- Official PDS guidance confirms the need for entitlement visibility, nearby FPS discovery, transaction history, Aadhaar-seeding status, portability/ONORC guidance, feedback, and grievance support.
-- The system is inherently federated: state-specific eligibility and workflows must remain authoritative, while the shared layer should standardize language, status, accessibility, caching, analytics, and error recovery.
+The previous UI read like a pitch deck. The new structure reads like a public service:
 
-## 3. MVP for the hackathon
+- Consumer language, household journey, and next actions lead the home page.
+- The ration dashboard is behind a dummy OTP flow, with an evaluator-friendly `DEMO-7824` shortcut and `246810` synthetic OTP.
+- Allocation bars show total quota, withdrawn amount, and remaining balance for rice, wheat, dal, and sugar.
+- The store locator is a list-plus-map experience: selecting either a card or map marker selects the same store.
+- Complaints live in a dedicated support section with synthetic history, status, update text, and a new complaint form.
+- The developer portal is a separate `/developers` route and links to FastAPI’s interactive `/docs` and `/openapi.json` resources.
+- All eight language choices are present: English, Hindi, Tamil, Marathi, Bengali, Telugu, Kannada, and Malayalam.
+- Favicon, metadata, headings, and visible product language are JanRation branded.
+- Footer links now lead to sections, the API portal, or meaningful modals. The small “Prototype limitations” link is intentionally discreet but functional.
 
-The prototype in this repository demonstrates a complete, synthetic citizen flow:
+## User journey
 
-1. Land on a calm, responsive home screen with four plain-language tasks.
-2. Choose “See my ration” and enter the safe demo reference `DEMO-7824`.
-3. Receive a readable entitlement summary for rice, wheat, and dal, including the next collection window.
-4. Continue to “Find my shop” and view nearby synthetic Fair Price Shops with opening hours, distance, reference, and reported stock note.
-5. Use “Report a problem” to submit a synthetic complaint and receive a trackable ticket reference.
-6. Open “Track a request” to see the proposed plain-language status pattern.
+### Cardholder
 
-The UI also includes English, Hindi, and Tamil switching, browser speech for the entitlement answer where supported, a high-contrast toggle, keyboard-friendly controls, a skip link, mobile layouts, and visible prototype-data disclosure.
+1. Arrive at JanRation and choose “Check my ration”.
+2. Enter a card reference or tap `DEMO-7824`.
+3. Receive a synthetic OTP. The demo explains that no SMS was sent.
+4. Enter `246810` to open the household view.
+5. Scan the allocation bars and recent collection history.
+6. Find a suitable shop using state, district, ONORC, stock, hours, queue, and accessibility signals.
+7. Select a map marker to see the shop details and inventory snapshot.
+8. If needed, open the separate Support section, review previous tickets, and create a new complaint.
 
-### Current iteration shipped in this repository
+### Migrant worker / ONORC
 
-- A visible reading-help bar now has a real on/off control. It persists in `localStorage`, updates the current screen without resetting the user’s task, changes key service copy into everyday wording, and announces the state through an ARIA live region.
-- Entitlement responses are saved locally after a successful demo lookup. If the API or network fails, the interface shows a clearly dated last-known answer instead of a blank error.
-- The shop list exposes stock freshness, an indicative queue estimate, step-free access, and ONORC support so “nearby” means more than a name and address.
-- A synthetic “I am away from home” flow demonstrates the next ONORC/migrant-worker journey through a common `/api/portability` contract.
-- `/api/states` makes the state-adapter boundary visible in the prototype; it is a catalog, not a live government integration.
+1. Open “If you are away from home”.
+2. Select home state and current state.
+3. Read the three-step portability guidance and suggested shop reference.
+4. Confirm the quantity and price shown on the POS screen before completing a lift.
 
-## 4. Recommended product scope after the demo
+## Developer portal and API focus
 
-### Citizen services
+The developer portal explains the shared service layer in terms of the actors that matter:
 
-- “What can I collect?”: entitlement by month, household member, commodity, price, and last refresh time.
-- “Where can I collect?”: location-aware FPS map/list, open now, accessibility, queue estimate, stock freshness, directions, and portability eligibility.
-- “My family”: add/remove member, address change, card correction, duplicate card, and downloadable e-ration card where the state supports it.
-- “My history”: recent transactions, partial lifts, failed authentication, and an explanation of each status.
-- “Get help”: guided complaint builder, evidence upload only with explicit consent, ticket timeline, escalation deadline, call-back preference, and assisted-service mode.
-- “Am I eligible?”: a decision tree in simple language with a document checklist and state-specific handoff.
-- Migrant mode: choose home state and current location, understand ONORC portability, find a nearby enabled shop, and see what happens if only part of the entitlement is collected.
+`FPS / ePoS → JanRation API → state adapter → entitlement / inventory / event ledger`
 
-### Inclusion and accessibility
+The contract is intentionally small and predictable:
 
-- Default language based on browser/device, always changeable.
-- Human-reviewed translations for every supported state language; never rely on raw machine translation for legal or entitlement text.
-- Read-aloud for key answers, large tap targets, high contrast, reduced motion, clear focus order, screen-reader labels, and text alternatives for maps.
-- Assisted mode for CSC/volunteer/family help: short-lived session, explicit consent, masked identifiers, and an activity receipt.
-- Low-bandwidth mode: no mandatory map tiles, compressed assets, cached last-known answers, retry queues, and a visible “last updated” timestamp.
-- IVR/USSD/SMS handoff for citizens who cannot use a smartphone.
+- `POST /api/auth/request-otp`
+- `POST /api/auth/verify-otp`
+- `GET /api/dashboard`
+- `GET /api/shops`
+- `GET /api/complaints`
+- `POST /api/complaints`
+- `GET /api/portability`
+- `GET /api/states`
+- `GET /api/health`
 
-### Trust and safety
+The developer page documents and the sandbox exposes synthetic write contracts such as `POST /api/transactions` and `POST /api/webhooks/stock`. Both require the clearly labelled demo shop token and protect retries with an idempotency key. They never update a real ledger.
 
-- Never ask JanRation to store Aadhaar, OTP, payment, or biometric data in the shared layer.
-- Use state-owned identity and consent boundaries; exchange only the minimum tokenized reference needed for a request.
-- Every answer shows source, timestamp, confidence/availability, and what is mock versus live.
-- Government logos and language that imply endorsement are intentionally excluded.
-- Audit trails, rate limits, encryption, retention limits, threat modeling, and an incident playbook belong in the production design.
+## India Stack-aligned intent
 
-## 5. Architecture and tech stack
+“Aligned” here means the design follows interoperable public-infrastructure principles; it is not a claim of government certification.
 
-### Hackathon build
+- Consent and purpose before accessing a citizen view.
+- Tokenized references and minimum data exchange.
+- No retention of Aadhaar, biometrics, OTP delivery data, or payment details in the shared layer.
+- Idempotency keys for POS writes so retries cannot double-deduct.
+- Human-readable receipts and ticket references.
+- Audit logs for who initiated an event and which adapter answered.
+- Webhooks/events for inventory and service updates.
+- Circuit breakers, queues, and last-known read models for unreliable state dependencies.
 
-- **Backend:** Python 3.11+, FastAPI, Uvicorn, Pydantic. FastAPI provides typed, testable endpoints and an OpenAPI contract without slowing the team down.
-- **Frontend:** semantic HTML, modern CSS, and dependency-light JavaScript. The first prototype avoids a large client framework and external fonts so it loads reliably and can be understood by both teammates.
-- **Data:** synthetic in-memory records now. Use PostgreSQL for service metadata, Redis for short-lived caches/rate limits, and object storage for consented documents later.
-- **Testing:** pytest + FastAPI TestClient now; Playwright for cross-browser journeys next.
-- **Deployment:** containerized FastAPI behind a CDN/reverse proxy, health checks, autoscaling, regional redundancy, and an adapter-worker queue for slow state dependencies.
+## Accessibility and resilience
 
-### Production-scale shape
+- System-only font stack: no external font request can fail or cause a flash of unstyled text.
+- Semantic headings, labels, landmarks, `focus-visible`, skip navigation, keyboard controls, and live announcements.
+- High-contrast mode and reduced-motion support.
+- Map is supplementary: every store is also available as a readable list.
+- Fixed panel/card minimum heights and busy-state indicators preserve geometry during interactions.
+- Buttons do not animate with layout-shifting transforms.
+- Dashboard and shop data fall back to labeled synthetic local data when the API is unavailable.
+- Every synthetic answer carries source/freshness context in the interface.
 
-`Citizen UI → API gateway → shared PDS experience API → state adapters → state PDS systems`
+## Synthetic data policy
 
-Cross-cutting services: translation/content service, consent and identity broker, cache/read model, observability, notifications, grievance workflow, and feature flags. Each state adapter should have a contract test suite and a circuit breaker. If an adapter fails, the shared layer should return a stale-but-labeled read view or a clear next action rather than a blank error page.
+The application uses only self-contained synthetic values: the household, card reference, OTP, balances, transactions, store coordinates, inventory, tickets, and timestamps. Any production integration must be designed and reviewed separately. The live government systems named in the competition brief are never called by this code.
 
-## 6. 48-hour hackathon execution plan
+## Suggested hackathon demo
 
-### Phase A — sharpen the story (2–3 hours)
+Record a two-minute walkthrough:
 
-- Interview two people who have used a ration shop or helped a family member.
-- Pick one hero scenario: a migrant worker checking entitlement and finding a shop in a new city.
-- Write a before/after script and define three success metrics: time to first useful answer, task completion rate, and comprehension of next action.
+1. Open the citizen portal, tap `DEMO-7824`, enter `246810`, and show the allocation bars.
+2. Click a store in the map and show stock, queue, accessibility, and ONORC signals.
+3. Open Support and show the pre-populated active ticket plus creation of a new ticket.
+4. Open `/developers` and explain how a POS event travels through the API and state adapter.
+5. End with the limitation modal and explain exactly what is mocked.
 
-### Phase B — build the citizen journey (8–12 hours)
+This directly answers the judging questions from the supplied image: who is affected, what is hard today, what changed, why this is better, what works now, what remains mocked, and how the system can scale safely.
 
-- Build the home screen, entitlement lookup, shop finder, complaint ticket, and tracking state.
-- Add mobile breakpoints, keyboard navigation, language switch, empty/loading/error states, and last-updated labels.
-- Keep all personal data synthetic and show the disclosure on-screen.
+## Post-hackathon build order
 
-### Phase C — reliability and inclusion pass (4–6 hours)
-
-- Test throttled 3G, offline/reconnect, small screens, keyboard only, Chrome/Firefox/Safari/Edge, and a screen reader.
-- Add a “service unavailable” state that offers a cached answer or a phone/assisted-service next step.
-- Run automated API tests and a browser smoke test.
-
-### Phase D — submission polish (4–6 hours)
-
-- Record a two-minute demo: first minute as a citizen, second minute on architecture and why it scales.
-- Keep a visible “what is mocked” list.
-- Deploy to a public URL with no login requirement; include demo reference in the landing screen.
-- Prepare the under-250-word summary around one problem, one journey, and measurable improvement.
-
-## 7. Suggested judging metrics
-
-- A first-time user reaches their entitlement in under 60 seconds.
-- A user can say what to collect, where to go, and what to do next after one screen.
-- The same core task works at 360px width and with a keyboard.
-- A dependency outage produces a useful recovery state rather than a generic error.
-- Translation coverage and terminology are reviewed by native speakers, not just machine output.
-
-## 8. Risks and honest limits
-
-This repository is a prototype. It does not connect to live government systems, authenticate a real person, validate eligibility, use Aadhaar, issue a ration card, or guarantee stock. The synthetic data and mock endpoints are deliberate and align with the hackathon brief’s safety requirements. State integration, legal review, operational ownership, translation QA, security review, and public procurement/adoption are separate phases.
+1. Have native speakers review every supported-language string.
+2. Add Playwright journeys at 360px, 768px, and desktop widths.
+3. Add Lighthouse and axe checks to CI.
+4. Define signed adapter contracts and conformance fixtures for each state.
+5. Add managed storage, consent/identity, queues, observability, and audit retention controls.
+6. Run security, privacy, accessibility, legal, and operational reviews before connecting any real service.

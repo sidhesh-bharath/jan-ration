@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173f35" />
+    <meta name="description" content="JanRation API documentation for Fair Price Shops, POS terminals, and state adapters." />
+    <title>JanRation API — developer portal</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body class="developer-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="prototype-bar"><span class="pulse-dot"></span><span>JanRation API sandbox · Synthetic credentials only</span><a href="/">← Cardholder portal</a></div>
+    <header class="site-header"><a class="brand" href="/"><span class="brand-mark">ज</span><span><strong>JanRation</strong><small>Developer portal</small></span></a><nav class="main-nav" aria-label="Developer navigation"><a href="#quickstart">Quickstart</a><a href="#contract">API contract</a><a href="#architecture">Architecture</a><a href="#safety">Safety</a></nav><a class="button button-secondary header-cta" href="/docs">OpenAPI docs ↗</a></header>
+
+    <main id="main-content">
+      <section class="developer-hero"><div><p class="eyebrow">OPEN, CONSENT-AWARE INFRASTRUCTURE</p><h1>One API for every<br /><em>ration touchpoint.</em></h1><p class="hero-text">JanRation gives Fair Price Shops, ePoS terminals, state adapters, and citizen apps a shared language for entitlements, inventory, transactions, and support.</p><div class="hero-actions"><a class="button button-primary" href="#quickstart">Try the sandbox →</a><a class="quiet-link" href="#architecture">See how it connects</a></div></div><div class="api-status-card"><div class="api-status-head"><span class="status-dot"></span><strong>Sandbox healthy</strong><span class="api-version">v0.2</span></div><div class="api-url"><span>Base URL</span><code>/api</code></div><div class="api-note">Synthetic responses only<br /><span>Respects the same contract as the cardholder demo.</span></div></div></section>
+
+      <section class="developer-section architecture-section" id="architecture"><div class="section-heading"><div><p class="eyebrow">THE SHARED SERVICE LAYER</p><h2>Local systems stay local.<br />The language becomes shared.</h2></div><p class="section-note">JanRation is an experience and integration layer, not a replacement for state ownership.</p></div><div class="architecture-flow"><div class="flow-node node-pos"><span>01</span><strong>FPS / ePoS</strong><small>Stock · lift · receipt</small></div><i class="flow-arrow">→</i><div class="flow-node node-gateway"><span>02</span><strong>JanRation API</strong><small>Consent · contracts · audit</small></div><i class="flow-arrow">→</i><div class="flow-node node-adapter"><span>03</span><strong>State adapter</strong><small>Rules · eligibility · sync</small></div><i class="flow-arrow">→</i><div class="flow-node node-ledger"><span>04</span><strong>Distribution engine</strong><small>Entitlement · ledger · events</small></div></div></section>
+
+      <section class="developer-section" id="quickstart"><div class="section-heading"><div><p class="eyebrow">START IN TWO MINUTES</p><h2>Connect a shop or terminal.</h2></div><p class="section-note">The sandbox uses no real identities, payments, Aadhaar values, or live state traffic.</p></div><div class="quickstart-grid"><div class="quickstart-copy"><div class="numbered-list"><div><span>01</span><p><strong>Request a scoped token</strong><br />Use a service account tied to a shop, terminal, or state adapter.</p></div><div><span>02</span><p><strong>Read before you write</strong><br />Fetch entitlement or inventory, then send an idempotent event.</p></div><div><span>03</span><p><strong>Keep the receipt</strong><br />Return a transaction reference that a citizen can use for support.</p></div></div></div><div class="code-card"><div class="code-card-head"><span>GET /api/shops</span><button class="copy-button" type="button" data-copy="curl --request GET https://demo.janration.in/api/shops?state=Tamil%20Nadu --header 'Authorization: Bearer demo-shop-token'">Copy</button></div><pre><code>curl --request GET \
+  'https://demo.janration.in/api/shops?state=Tamil%20Nadu' \
+  --header 'Authorization: Bearer demo-shop-token'</code></pre><div class="code-response"><span>200 · synthetic response</span><pre><code>{
+  "shop_reference": "TN-CHN-1042",
+  "stock": "available",
+  "onorc_enabled": true,
+  "last_updated": "2026-08-27T08:40:00+05:30"
+}</code></pre></div></div></div></section>
+
+      <section class="developer-section contract-section" id="contract"><div class="section-heading"><div><p class="eyebrow">COMMON CONTRACT</p><h2>Small, predictable endpoints.</h2></div><p class="section-note">Every write is designed to be retried safely and traced back to a citizen-facing receipt.</p></div><div class="endpoint-table"><div class="endpoint-row endpoint-head"><span>Method</span><span>Path</span><span>What it does</span><span>Owner</span></div><div class="endpoint-row"><span class="method get">GET</span><code>/api/shops</code><span>Find shops, stock freshness, access, queue</span><small>Citizen / POS</small></div><div class="endpoint-row"><span class="method get">GET</span><code>/api/dashboard</code><span>Read a verified household entitlement view</span><small>Citizen app</small></div><div class="endpoint-row"><span class="method post">POST</span><code>/api/transactions</code><span>Record an idempotent ePoS lift event</span><small>POS terminal</small></div><div class="endpoint-row"><span class="method post">POST</span><code>/api/webhooks/stock</code><span>Publish inventory changes to subscribers</span><small>State adapter</small></div><div class="endpoint-row"><span class="method get">GET</span><code>/api/complaints</code><span>Read ticket status and next update date</span><small>Support desk</small></div></div></section>
+
+      <section class="developer-section safety-section" id="safety"><div class="safety-intro"><p class="eyebrow">INDIA STACK-ALIGNED BY INTENT</p><h2>Trust is part of the contract.</h2><p>These are design principles for a production implementation, not a claim of government certification or live integration.</p></div><div class="safety-grid"><div><span>◉</span><strong>Consent first</strong><p>Every citizen data read has a clear purpose, scope, and expiry.</p></div><div><span>⌁</span><strong>Minimum data</strong><p>Use tokenized references. Do not retain Aadhaar, biometrics, OTPs, or payments.</p></div><div><span>↺</span><strong>Safe retries</strong><p>Idempotency keys and event references prevent double deductions.</p></div><div><span>⌁</span><strong>Auditable</strong><p>Record who initiated a change, what changed, and which state adapter answered.</p></div><div><span>⚡</span><strong>Resilient</strong><p>Use circuit breakers, queues, read models, and clearly labelled last-known data.</p></div><div><span>अ</span><strong>Human-readable</strong><p>Every machine status becomes a plain-language message and next action.</p></div></div></section>
+
+      <section class="developer-section developer-cta"><div><p class="eyebrow">BUILD WITH THE CONTRACT</p><h2>Make the next shop integration boring.</h2><p>Use the interactive OpenAPI reference for schemas, authentication shapes, and generated client workflows.</p></div><a class="button button-primary" href="/docs">Open API reference ↗</a></section>
+    </main>
+    <footer class="site-footer"><div class="footer-main"><a class="brand footer-brand" href="/"><span class="brand-mark">ज</span><span><strong>JanRation</strong><small>A simpler public service concept</small></span></a><p>Sandbox only. No live government service is connected.</p></div><div class="footer-links"><a href="/">Cardholder portal</a><a href="#safety">Safety</a><a href="/openapi.json">OpenAPI JSON</a><a href="/docs">Interactive docs</a></div></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div><script src="/static/developer.js" defer></script>
+  </body>
+</html>
