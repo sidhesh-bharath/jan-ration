@@ -148,7 +148,13 @@ def developers() -> FileResponse:
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "mode": "demo", "service": "JanRation API", "data_policy": "synthetic-only"}
+    return {
+        "status": "ok",
+        "mode": "demo",
+        "service": "JanRation API",
+        "product": "JanRation",
+        "data_policy": "synthetic-only",
+    }
 
 
 def require_shop_token(authorization: Optional[str]) -> None:

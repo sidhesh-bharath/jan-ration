@@ -11,6 +11,23 @@ const COPY = {
   ml: { prototypeBar: "JanRation ഡെമോ · കാണിച്ചിരിക്കുന്ന വിവരങ്ങളെല്ലാം സാങ്കൽപ്പികം", brandTag: "നിങ്ങളുടെ റേഷൻ, എളുപ്പത്തിൽ", navBenefits: "എന്റെ ആനുകൂല്യങ്ങൾ", navShops: "കട കണ്ടെത്തുക", navSupport: "സഹായം", navDevelopers: "ഡെവലപ്പർമാർക്ക്", heroTitle: "നിങ്ങളുടെ റേഷൻ അറിയുക.<br /><em>മാസം ആസൂത്രണം ചെയ്യുക.</em>", heroText: "നിങ്ങളുടെ കുടുംബത്തിന് ലഭിക്കുന്നത്, നിങ്ങൾക്ക് അനുയോജ്യമായ കട, സഹായം ആവശ്യമെങ്കിൽ രേഖ — എല്ലാം ഒരിടത്ത്.", heroCta: "എന്റെ റേഷൻ കാണുക", accountTitle: "നിങ്ങളുടെ റേഷൻ, മൂന്ന് വ്യക്തമായ ഘട്ടങ്ങളിൽ.", loginTitle: "മാസിക അവകാശം കാണുക", loginButton: "തുടരുക", dashboardTitle: "ഈ മാസത്തെ ഒറ്റനോട്ടത്തിൽ.", allocationTitle: "നിങ്ങൾക്ക് ബാക്കി", noticesTitle: "ഓർക്കുക", historyTitle: "സമീപകാല റേഷൻ രേഖ", stepThree: "എവിടെ നിന്ന് വാങ്ങണമെന്ന് തിരഞ്ഞെടുക്കുക", shopsTitle: "നിങ്ങൾക്ക് അനുയോജ്യമായ കട.", findShops: "കടകൾ കണ്ടെത്തുക", stepFour: "വീട്ടിൽ നിന്ന് അകലെയാണെങ്കിൽ", portabilityTitle: "നിങ്ങളുടെ റേഷൻ നിങ്ങളോടൊപ്പം വരാം.", portabilityCta: "പോർട്ടബിലിറ്റി കാണുക", stepFive: "എന്തെങ്കിലും തെറ്റുണ്ടെങ്കിൽ", supportTitle: "തുടരുന്ന സഹായം.", newComplaint: "പ്രശ്നം അറിയിക്കുക", complaintsTitle: "പരാതികളും പുതുക്കലുകളും", helpCardTitle: "മനുഷ്യ സഹായം വേണോ?", footerAbout: "ഞങ്ങളെക്കുറിച്ച്", footerAccessibility: "പ്രവേശനക്ഷമത", footerPrivacy: "സ്വകാര്യത ആദ്യം", footerDevelopers: "ഡെവലപ്പർ API", footerLimitations: "പ്രോട്ടോടൈപ്പ് പരിമിതികൾ", authTitle: "റേഷൻ സുരക്ഷിതമായി കാണുക", authReference: "ഡെമോ കാർഡ് റഫറൻസ് നൽകുക", authContinue: "ഡമ്മി OTP അയയ്ക്കുക", authUseDemo: "DEMO-7824 ഉപയോഗിക്കുക", authOtpTitle: "ഡമ്മി OTP നൽകുക", authVerify: "പരിശോധിച്ച് റേഷൻ കാണുക", authBack: "തിരികെ", demoOtpLabel: "ഡെമോ OTP", complaintFormTitle: "എന്താണ് സംഭവിച്ചത്?", complaintSend: "പരാതി ടിക്കറ്റ് സൃഷ്ടിക്കുക", complaintCancel: "റദ്ദാക്കുക", limitationsModalTitle: "ഈ പ്രോട്ടോടൈപ്പിന്റെ പരിമിതികൾ", apiLink: "ഡെവലപ്പർ API" },
 };
 
+const PLAIN_LABELS = {
+  en: { plainLanguageTitle: "Reading help", plainLanguageHint: "Turn this on to replace official terms with everyday words.", plainLanguageOn: "Use simpler words", plainLanguageOff: "Use standard wording", plainLanguageStatusOn: "Simpler words are on.", plainLanguageStatusOff: "Standard wording is on.", connectionOnline: "Demo service online", connectionOffline: "Offline — saved answers remain available" },
+  hi: { plainLanguageTitle: "पढ़ने में मदद", plainLanguageHint: "सरकारी शब्दों की जगह रोज़मर्रा के शब्द देखें।", plainLanguageOn: "सरल शब्द इस्तेमाल करें", plainLanguageOff: "सामान्य शब्द इस्तेमाल करें", plainLanguageStatusOn: "सरल शब्द चालू हैं।", plainLanguageStatusOff: "सामान्य शब्द चालू हैं।", connectionOnline: "डेमो सेवा चालू", connectionOffline: "ऑफ़लाइन — सेव किए जवाब उपलब्ध हैं" },
+  ta: { plainLanguageTitle: "படிக்க உதவி", plainLanguageHint: "அதிகாரப்பூர்வ சொற்களுக்குப் பதில் எளிய சொற்களைப் பாருங்கள்.", plainLanguageOn: "எளிய சொற்களைப் பயன்படுத்து", plainLanguageOff: "வழக்கமான சொற்களைப் பயன்படுத்து", plainLanguageStatusOn: "எளிய சொற்கள் இயக்கப்பட்டுள்ளன.", plainLanguageStatusOff: "வழக்கமான சொற்கள் இயக்கப்பட்டுள்ளன.", connectionOnline: "டெமோ சேவை இயங்குகிறது", connectionOffline: "ஆஃப்லைன் — சேமித்த பதில்கள் உள்ளன" },
+  mr: { plainLanguageTitle: "वाचण्यास मदत", plainLanguageHint: "अधिकृत शब्दांऐवजी सोपे रोजचे शब्द पहा.", plainLanguageOn: "सोपे शब्द वापरा", plainLanguageOff: "नेहमीचे शब्द वापरा", plainLanguageStatusOn: "सोपे शब्द सुरू आहेत.", plainLanguageStatusOff: "नेहमीचे शब्द सुरू आहेत.", connectionOnline: "डेमो सेवा सुरू", connectionOffline: "ऑफलाइन — जतन केलेली उत्तरे उपलब्ध आहेत" },
+  bn: { plainLanguageTitle: "পড়তে সাহায্য", plainLanguageHint: "সরকারি শব্দের বদলে সহজ দৈনন্দিন শব্দ দেখুন।", plainLanguageOn: "সহজ শব্দ ব্যবহার করুন", plainLanguageOff: "সাধারণ শব্দ ব্যবহার করুন", plainLanguageStatusOn: "সহজ শব্দ চালু আছে।", plainLanguageStatusOff: "সাধারণ শব্দ চালু আছে।", connectionOnline: "ডেমো পরিষেবা চালু", connectionOffline: "অফলাইন — সংরক্ষিত উত্তর রয়েছে" },
+  te: { plainLanguageTitle: "చదవడానికి సహాయం", plainLanguageHint: "అధికారిక పదాల బదులు సాధారణ పదాలను చూడండి.", plainLanguageOn: "సులభమైన పదాలు వాడండి", plainLanguageOff: "సాధారణ పదాలు వాడండి", plainLanguageStatusOn: "సులభమైన పదాలు ఆన్‌లో ఉన్నాయి.", plainLanguageStatusOff: "సాధారణ పదాలు ఆన్‌లో ఉన్నాయి.", connectionOnline: "డెమో సేవ అందుబాటులో ఉంది", connectionOffline: "ఆఫ్‌లైన్ — సేవ్ చేసిన సమాధానాలు అందుబాటులో ఉన్నాయి" },
+  kn: { plainLanguageTitle: "ಓದಲು ಸಹಾಯ", plainLanguageHint: "ಅಧಿಕೃತ ಪದಗಳ ಬದಲು ಸರಳ ದೈನಂದಿನ ಪದಗಳನ್ನು ನೋಡಿ.", plainLanguageOn: "ಸರಳ ಪದಗಳನ್ನು ಬಳಸಿ", plainLanguageOff: "ಸಾಮಾನ್ಯ ಪದಗಳನ್ನು ಬಳಸಿ", plainLanguageStatusOn: "ಸರಳ ಪದಗಳು ಆನ್ ಆಗಿವೆ.", plainLanguageStatusOff: "ಸಾಮಾನ್ಯ ಪದಗಳು ಆನ್ ಆಗಿವೆ.", connectionOnline: "ಡೆಮೋ ಸೇವೆ ಲಭ್ಯವಿದೆ", connectionOffline: "ಆಫ್‌ಲೈನ್ — ಉಳಿಸಿದ ಉತ್ತರಗಳು ಲಭ್ಯವಿವೆ" },
+  ml: { plainLanguageTitle: "വായിക്കാൻ സഹായം", plainLanguageHint: "ഔദ്യോഗിക പദങ്ങൾക്ക് പകരം ലളിതമായ വാക്കുകൾ കാണുക.", plainLanguageOn: "ലളിതമായ വാക്കുകൾ ഉപയോഗിക്കുക", plainLanguageOff: "സാധാരണ വാക്കുകൾ ഉപയോഗിക്കുക", plainLanguageStatusOn: "ലളിതമായ വാക്കുകൾ ഓണാണ്.", plainLanguageStatusOff: "സാധാരണ വാക്കുകൾ ഓണാണ്.", connectionOnline: "ഡെമോ സേവനം ലഭ്യമാണ്", connectionOffline: "ഓഫ്‌ലൈൻ — സേവ് ചെയ്ത ഉത്തരങ്ങൾ ലഭ്യമാണ്" },
+};
+
+const PLAIN_COPY = {
+  en: { heroTitle: "Know your ration.<br /><em>Easy to understand.</em>", heroText: "See what food you can collect, find a nearby shop, and get help if there is a problem.", accountTitle: "Your ration, in three simple steps.", accountText: "Enter your demo card reference to see what your household can collect.", allocationTitle: "What is left for you", shopsTitle: "Find a nearby shop.", shopsText: "See when shops are open, what they have, and how long the queue is.", supportTitle: "Get help when something goes wrong.", supportText: "Send a problem report and keep the ticket number.", aboutTitle: "One simple service for many state systems." },
+  hi: { heroTitle: "अपना राशन जानें।<br /><em>समझना आसान।</em>", heroText: "देखें कि आपको कितना खाना मिल सकता है, पास की दुकान खोजें और समस्या होने पर मदद लें।", accountTitle: "आपका राशन, तीन आसान कदमों में।", accountText: "इस महीने का राशन देखने के लिए अपना डेमो कार्ड संदर्भ डालें।", allocationTitle: "आपके लिए कितना बचा है", shopsTitle: "पास की दुकान खोजें।", shopsText: "दुकान कब खुली है, क्या उपलब्ध है और कतार कितनी है — देखें।", supportTitle: "समस्या होने पर मदद पाएँ।", supportText: "समस्या भेजें और टिकट नंबर संभालकर रखें।", aboutTitle: "कई राज्य प्रणालियों के लिए एक आसान सेवा।" },
+  ta: { heroTitle: "உங்கள் ரேஷனை அறியுங்கள்.<br /><em>புரிந்துகொள்ள எளிது.</em>", heroText: "எவ்வளவு உணவு பெறலாம், அருகிலுள்ள கடை மற்றும் சிக்கலில் உதவி ஆகியவற்றைப் பாருங்கள்.", accountTitle: "உங்கள் ரேஷன், மூன்று எளிய படிகளில்.", accountText: "இந்த மாதம் பெறக்கூடியதைப் பார்க்க டெமோ அட்டை குறிப்பை உள்ளிடுங்கள்.", allocationTitle: "உங்களுக்கு மீதமுள்ளது", shopsTitle: "அருகிலுள்ள கடையைக் கண்டுபிடிக்கவும்.", shopsText: "கடை திறந்திருக்கும் நேரம், இருப்பு மற்றும் வரிசை நேரத்தைப் பாருங்கள்.", supportTitle: "சிக்கல் ஏற்பட்டால் உதவி பெறுங்கள்.", supportText: "சிக்கலை அனுப்பி டிக்கெட் எண்ணை வைத்திருங்கள்.", aboutTitle: "பல மாநில அமைப்புகளுக்கு ஒரு எளிய சேவை." },
+};
+
 const SYNTHETIC = {
   profile: { masked_household: "Kumar household", state: "Tamil Nadu", district: "Chennai", category: "Priority Household (PHH)", member_count: 4, card_status: "Active", last_updated: "27 Aug 2026, 09:12 IST", next_collection: "1–30 Sep 2026", source: "Tamil Nadu adapter · synthetic read model", allocations: [{ name: "Rice", total: 20, withdrawn: 12, remaining: 8, unit: "kg", price: "₹0 / kg", color: "saffron" }, { name: "Wheat", total: 5, withdrawn: 2, remaining: 3, unit: "kg", price: "₹0 / kg", color: "leaf" }, { name: "Toor dal", total: 1, withdrawn: .5, remaining: .5, unit: "kg", price: "₹30 / kg", color: "coral" }, { name: "Sugar", total: 2, withdrawn: 1, remaining: 1, unit: "kg", price: "₹25 / kg", color: "blue" }], transactions: [{ date: "12 Aug 2026", shop: "Sri Murugan Fair Price Shop", reference: "TXN-TN-8012", items: "8 kg rice · 0.5 kg dal", status: "Completed" }, { date: "18 Jul 2026", shop: "Sri Murugan Fair Price Shop", reference: "TXN-TN-7771", items: "10 kg rice · 2 kg wheat", status: "Completed" }, { date: "20 Jun 2026", shop: "Makkal Sevai PDS Centre", reference: "TXN-TN-7420", items: "2 kg sugar · 1 kg dal", status: "Completed" }, { date: "08 May 2026", shop: "Sri Murugan Fair Price Shop", reference: "TXN-TN-7199", items: "20 kg rice · 5 kg wheat", status: "Completed" }, { date: "11 Apr 2026", shop: "Sri Murugan Fair Price Shop", reference: "TXN-TN-6804", items: "Authentication retry · no deduction", status: "No deduction" }], notices: [{ type: "info", title: "Your September window is open", text: "You can collect from 1–30 Sep 2026 at an enabled Fair Price Shop." }, { type: "tip", title: "Check before you confirm", text: "The POS screen should show the quantity and price before a lift is completed." }] },
   shops: [{ id: "tn-1042", name: "Sri Murugan Fair Price Shop", reference: "TN-CHN-1042", state: "Tamil Nadu", district: "Chennai", address: "18, Lake View Road, Velachery", distance: "0.8 km", hours: "8:00–13:00 · 16:00–18:00", status: "Open today", stock_note: "Rice, wheat and dal reported available", stock_updated: "Today, 08:40", queue_minutes: 12, wheelchair_accessible: true, onorc_enabled: true, map_x: 39, map_y: 42, inventory: [{ name: "Rice", available: "High" }, { name: "Wheat", available: "High" }, { name: "Toor dal", available: "Medium" }] }, { id: "tn-1097", name: "Makkal Sevai PDS Centre", reference: "TN-CHN-1097", state: "Tamil Nadu", district: "Chennai", address: "4, Gandhi Street, Guindy", distance: "2.1 km", hours: "9:00–13:00 · 15:00–18:00", status: "Open today", stock_note: "All listed items reported available", stock_updated: "Today, 09:05", queue_minutes: 24, wheelchair_accessible: false, onorc_enabled: true, map_x: 67, map_y: 31, inventory: [{ name: "Rice", available: "High" }, { name: "Wheat", available: "Medium" }, { name: "Toor dal", available: "High" }] }, { id: "mh-2408", name: "Jan Aahar Centre", reference: "MH-PUN-2408", state: "Maharashtra", district: "Pune", address: "11, Market Yard Road, Pune", distance: "1.4 km", hours: "9:00–17:00", status: "Open today", stock_note: "Rice and dal reported available", stock_updated: "Yesterday, 16:20", queue_minutes: 8, wheelchair_accessible: true, onorc_enabled: true, map_x: 43, map_y: 54, inventory: [{ name: "Rice", available: "High" }, { name: "Wheat", available: "Low" }, { name: "Toor dal", available: "High" }] }, { id: "jk-3001", name: "Himalayan Public Distribution Point", reference: "JK-SGR-3001", state: "Jammu and Kashmir", district: "Srinagar", address: "12, Residency Road, Srinagar", distance: "0.6 km", hours: "9:30–16:30", status: "Open today", stock_note: "Rice and wheat reported available", stock_updated: "Today, 07:55", queue_minutes: 16, wheelchair_accessible: true, onorc_enabled: true, map_x: 58, map_y: 38, inventory: [{ name: "Rice", available: "High" }, { name: "Wheat", available: "High" }, { name: "Toor dal", available: "Low" }] }, { id: "ka-4402", name: "Namma Anna Store", reference: "KA-BLR-4402", state: "Karnataka", district: "Bengaluru Urban", address: "22, 5th Main Road, Jayanagar", distance: "1.8 km", hours: "8:30–17:30", status: "Open today", stock_note: "Rice and sugar reported available", stock_updated: "Today, 08:15", queue_minutes: 10, wheelchair_accessible: false, onorc_enabled: true, map_x: 29, map_y: 62, inventory: [{ name: "Rice", available: "High" }, { name: "Wheat", available: "Medium" }, { name: "Sugar", available: "High" }] }, { id: "wb-5188", name: "Bengal Jan Sahayata Kendra", reference: "WB-KOL-5188", state: "West Bengal", district: "Kolkata", address: "7, Canal South Road, Kolkata", distance: "2.6 km", hours: "10:00–18:00", status: "Opening soon", stock_note: "Last stock report: rice available", stock_updated: "Yesterday, 14:10", queue_minutes: 30, wheelchair_accessible: true, onorc_enabled: false, map_x: 73, map_y: 60, inventory: [{ name: "Rice", available: "Medium" }, { name: "Wheat", available: "Low" }, { name: "Toor dal", available: "Low" }] }],
@@ -19,17 +36,49 @@ const SYNTHETIC = {
 
 const $ = (selector) => document.querySelector(selector);
 let currentLanguage = localStorage.getItem("janration-language") || "en";
+let plainLanguageEnabled = localStorage.getItem("janration-plain-language") === "true";
 let currentShops = [...SYNTHETIC.shops];
 let selectedShopId = currentShops[0].id;
 let currentProfile = null;
 let challengeId = null;
 let showingAllHistory = false;
 
-function t(key) { return COPY[currentLanguage]?.[key] || COPY.en[key] || key; }
+function t(key) {
+  if (plainLanguageEnabled && PLAIN_COPY[currentLanguage]?.[key]) return PLAIN_COPY[currentLanguage][key];
+  return COPY[currentLanguage]?.[key] || COPY.en[key] || PLAIN_LABELS[currentLanguage]?.[key] || PLAIN_LABELS.en[key] || key;
+}
 function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c])); }
 function announce(message) { const region = $("#live-region"); if (region) region.textContent = message; }
 function showToast(message) { const toast = $("#toast"); toast.textContent = message; toast.classList.add("show"); window.clearTimeout(showToast.timer); showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 3200); announce(message); }
 function setBusy(button, busy) { if (!button) return; button.disabled = busy; button.setAttribute("aria-busy", String(busy)); button.classList.toggle("is-busy", busy); }
+
+function updatePlainLanguageControl() {
+  const button = $("#plain-language-toggle");
+  const status = $("#plain-language-status");
+  if (!button) return;
+  button.setAttribute("aria-pressed", String(plainLanguageEnabled));
+  button.classList.toggle("is-active", plainLanguageEnabled);
+  const label = button.querySelector("[data-plain-label]");
+  if (label) label.textContent = t(plainLanguageEnabled ? "plainLanguageOff" : "plainLanguageOn");
+  button.title = t(plainLanguageEnabled ? "plainLanguageOff" : "plainLanguageOn");
+  if (status) status.textContent = t(plainLanguageEnabled ? "plainLanguageStatusOn" : "plainLanguageStatusOff");
+}
+
+function updateConnectionStatus() {
+  const element = $("#connection-status");
+  if (!element) return;
+  const online = navigator.onLine;
+  element.textContent = t(online ? "connectionOnline" : "connectionOffline");
+  element.classList.toggle("is-offline", !online);
+}
+
+function setPlainLanguage(enabled) {
+  plainLanguageEnabled = Boolean(enabled);
+  localStorage.setItem("janration-plain-language", String(plainLanguageEnabled));
+  document.body.classList.toggle("plain-language", plainLanguageEnabled);
+  applyLanguage(currentLanguage);
+  announce(t(plainLanguageEnabled ? "plainLanguageStatusOn" : "plainLanguageStatusOff"));
+}
 
 function applyLanguage(language) {
   currentLanguage = COPY[language] ? language : "en";
@@ -38,6 +87,8 @@ function applyLanguage(language) {
   document.title = currentLanguage === "en" ? "JanRation — your ration, made simpler" : `JanRation — ${t("heroCta")}`;
   document.querySelectorAll("[data-i18n]").forEach((element) => { element.innerHTML = t(element.dataset.i18n); });
   $("#language-select").value = currentLanguage;
+  updatePlainLanguageControl();
+  updateConnectionStatus();
   if (currentProfile) renderDashboard(currentProfile);
   renderComplaints(window.complaintData || SYNTHETIC.complaints);
 }
@@ -72,6 +123,7 @@ function openPortability() { $("#info-title").textContent = t("portabilityModalT
 
 document.addEventListener("click", (event) => { const actionElement = event.target.closest("[data-action]"); const storeElement = event.target.closest("[data-store-id]"); if (storeElement) { event.preventDefault(); selectShop(storeElement.dataset.storeId); return; } if (!actionElement) return; event.preventDefault(); const action = actionElement.dataset.action; if (action === "open-auth") openAuth(actionElement.dataset.demo ? "DEMO-7824" : ""); if (action === "open-portability") openPortability(); if (action === "new-complaint") openComplaintForm(); if (action === "cancel-complaint") $("#new-complaint-card").hidden = true; if (action === "copy-store") { navigator.clipboard?.writeText(actionElement.dataset.storeReference); showToast(`${t("copyReady")}: ${actionElement.dataset.storeReference}`); } });
 $("#language-select").addEventListener("change", (event) => applyLanguage(event.target.value));
+$("#plain-language-toggle").addEventListener("click", () => setPlainLanguage(!plainLanguageEnabled));
 $("#contrast-toggle").addEventListener("click", () => { const enabled = document.body.classList.toggle("high-contrast"); localStorage.setItem("janration-contrast", String(enabled)); });
 $("#history-toggle").addEventListener("click", () => { showingAllHistory = !showingAllHistory; if (currentProfile) renderTransactions(currentProfile.transactions); });
 $("#listen-button").addEventListener("click", () => { const text = "This month, your household can collect 20 kilograms of rice, 5 kilograms of wheat, 1 kilogram of toor dal, and 2 kilograms of sugar. Twelve kilograms of rice has been withdrawn."; if ("speechSynthesis" in window) { window.speechSynthesis.cancel(); window.speechSynthesis.speak(new SpeechSynthesisUtterance(text)); showToast(t("listen")); } });
@@ -79,7 +131,8 @@ $("#logout-button").addEventListener("click", () => { sessionStorage.removeItem(
 $("#find-shops-button").addEventListener("click", loadShops); $("#shop-state").addEventListener("change", loadShops); $("#onorc-filter").addEventListener("change", loadShops); $("#shop-district").addEventListener("keydown", (event) => { if (event.key === "Enter") loadShops(); });
 $("#complaint-form").addEventListener("submit", submitComplaint);
 document.addEventListener("click", (event) => { const modalTrigger = event.target.closest("[data-modal]"); if (modalTrigger) openInfoModal(modalTrigger.dataset.modal); const closer = event.target.closest("[data-close-modal]"); if (closer) closeModal(`#${closer.dataset.closeModal}`); if (event.target.classList.contains("modal-backdrop")) closeModal(`#${event.target.id}`); });
-window.addEventListener("online", () => showToast("Back online")); window.addEventListener("offline", () => showToast("Offline — saved demo answers remain available"));
+window.addEventListener("online", () => { updateConnectionStatus(); showToast(t("connectionOnline")); }); window.addEventListener("offline", () => { updateConnectionStatus(); showToast(t("connectionOffline")); });
 
+if (plainLanguageEnabled) document.body.classList.add("plain-language");
 if (localStorage.getItem("janration-contrast") === "true") document.body.classList.add("high-contrast");
 applyLanguage(currentLanguage); renderShops(); loadComplaints();

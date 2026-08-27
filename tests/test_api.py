@@ -18,13 +18,20 @@ def get_demo_session() -> str:
 def test_home_and_developer_routes_are_branded():
     assert client.get("/").status_code == 200
     assert client.get("/developers").status_code == 200
-    assert "JanRation" in (STATIC_DIR / "developers.html").read_text(encoding="utf-8")
+    developer_html = (STATIC_DIR / "developers.html").read_text(encoding="utf-8")
+    assert "JanRation" in developer_html
+    assert "janration.onrender.com" in developer_html
+    assert "YOUR-RENDER-SERVICE" not in developer_html
+    portal_html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
+    assert 'id="plain-language-toggle"' in portal_html
+    assert 'data-i18n="plainLanguageTitle"' in portal_html
     assert (STATIC_DIR / "favicon.svg").exists()
 
 
 def test_health_is_synthetic_only():
     payload = client.get("/api/health").json()
     assert payload["service"] == "JanRation API"
+    assert payload["product"] == "JanRation"
     assert payload["data_policy"] == "synthetic-only"
 
 

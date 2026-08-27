@@ -7,11 +7,22 @@
     <meta name="description" content="JanRation helps ration cardholders see their entitlement, find a Fair Price Shop, and get support." />
     <title>JanRation — your ration, made simpler</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=20260827-3" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260827-5" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="prototype-bar"><span class="pulse-dot"></span><span data-i18n="prototypeBar">JanRation demo · All displayed records are synthetic</span><a href="#about" data-i18n="learnMore">Learn more</a></div>
+    <div class="reading-bar" role="region" aria-label="Reading options">
+      <div class="reading-bar-inner">
+        <span class="reading-bar-title" data-i18n="plainLanguageTitle">Reading help</span>
+        <span class="reading-bar-hint" data-i18n="plainLanguageHint">Turn this on to replace official terms with everyday words.</span>
+        <button class="plain-language-toggle" id="plain-language-toggle" type="button" aria-pressed="false">
+          <span class="toggle-dot" aria-hidden="true"></span><span data-plain-label>Use simpler words</span>
+        </button>
+        <span class="reading-bar-status" id="plain-language-status" role="status" aria-live="polite">Standard wording is on.</span>
+        <span class="connection-status" id="connection-status" aria-live="polite">Demo service online</span>
+      </div>
+    </div>
     <header class="site-header">
       <a class="brand" href="/" aria-label="JanRation home"><span class="brand-mark" aria-hidden="true">ज</span><span><strong>JanRation</strong><small data-i18n="brandTag">Your ration, made simpler</small></span></a>
       <nav class="main-nav" aria-label="Primary navigation"><a href="#account" data-i18n="navBenefits">My benefits</a><a href="#shops" data-i18n="navShops">Find a shop</a><a href="#support" data-i18n="navSupport">Support</a><a class="developer-link" href="/developers"><span>↗</span> <span data-i18n="navDevelopers">For developers</span></a></nav>
@@ -39,6 +50,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div><div class="sr-only" id="live-region" aria-live="polite" aria-atomic="true"></div>
     <div class="modal-backdrop" id="auth-modal" hidden><div class="modal auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" data-close-modal="auth-modal" type="button" aria-label="Close">×</button><div class="auth-steps"><span class="is-active" id="auth-step-one">1</span><i></i><span id="auth-step-two">2</span></div><div id="auth-content"></div></div></div>
     <div class="modal-backdrop" id="info-modal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="info-title"><button class="modal-close" data-close-modal="info-modal" type="button" aria-label="Close">×</button><h2 id="info-title"></h2><div id="info-body"></div></div></div>
-    <script src="/static/app.js?v=20260827-3" defer></script>
+    <script src="/static/app.js?v=20260827-4" defer></script>
   </body>
 </html>

@@ -33,7 +33,9 @@ Install Python from python.org with **Add Python to PATH** enabled, then install
 
 ## Install and run
 
-From `/home/sidhesh/Documents/Projects/jan-pds`:
+From the project directory (the folder that contains `app.py`):
+
+If this checkout was moved from another computer or folder, recreate `.venv` first. Python virtual environments store an absolute interpreter path and the copied environment may still point at the old location.
 
 ```bash
 python3 -m venv .venv
