@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173f35" />
+    <meta name="description" content="JanRation is a clear, multilingual demo for finding and using PDS services across India." />
+    <title>JanRation — your ration, made simpler</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="demo-banner"><span class="pulse-dot"></span> Prototype mode · Synthetic data only · Not an official government website</div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="JanRation home">
+        <span class="brand-mark" aria-hidden="true">ज</span>
+        <span><strong>JanRation</strong><small>One simple door to PDS services</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#how-it-works" data-i18n="navHow">How it works</a>
+        <a href="#help" data-i18n="navHelp">Need help?</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="contrast-toggle" type="button" aria-label="Toggle high contrast" title="Toggle high contrast">◐</button>
+        <label class="language-select"><span class="sr-only">Language</span><select id="language-select"><option value="en">English</option><option value="hi">हिन्दी</option><option value="ta">தமிழ்</option></select></label>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="eyebrow">Food security, without the maze</p>
+          <h1 data-i18n="heroTitle">Your ration benefits.<br /><em>Clear at a glance.</em></h1>
+          <p class="hero-text" data-i18n="heroText">Find your entitlement, locate a nearby shop, and get help when something goes wrong — across states, in your language.</p>
+          <div class="hero-search">
+            <label for="need-search" data-i18n="searchLabel">What do you need today?</label>
+            <div class="search-row"><input id="need-search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Try “find a ration shop”" /><button id="search-button" class="button button-primary" type="button" aria-label="Search">→</button></div>
+            <div class="search-suggestions" id="search-suggestions" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of a family receiving food grains">
+          <div class="sun-orb"></div><div class="grain-arc arc-one"></div><div class="grain-arc arc-two"></div>
+          <div class="illustration-card">
+            <span class="illustration-label">THIS MONTH</span>
+            <div class="grain-stack"><span>20</span><small>kg rice</small></div>
+            <div class="mini-progress"><span></span></div>
+            <p data-i18n="visualCaption">Your household view, in one calm place.</p>
+          </div>
+          <div class="floating-pill pill-top">✓ <span data-i18n="pillPortability">Portable across India</span></div>
+          <div class="floating-pill pill-bottom">⌖ <span data-i18n="pillNearby">Shops near you</span></div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Product principles">
+        <span>01 <strong data-i18n="trustOne">Plain language</strong></span><span>02 <strong data-i18n="trustTwo">Works on slow networks</strong></span><span>03 <strong data-i18n="trustThree">Your data stays yours</strong></span>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section-heading"><div><p class="eyebrow" data-i18n="sectionEyebrow">Start with what you came for</p><h2 data-i18n="sectionTitle">The four things people need most.</h2></div><p class="section-note" data-i18n="sectionNote">No portal-hopping. No hunting through menus.</p></div>
+        <div class="service-grid">
+          <button class="service-card featured" data-action="entitlement" type="button"><span class="card-number">01</span><span class="service-icon">▣</span><strong data-i18n="serviceEntitle">See my ration</strong><span data-i18n="serviceEntitleText">Know exactly what you can collect this month.</span><span class="card-arrow">↗</span></button>
+          <button class="service-card" data-action="shops" type="button"><span class="card-number">02</span><span class="service-icon">⌖</span><strong data-i18n="serviceShop">Find a shop</strong><span data-i18n="serviceShopText">See open Fair Price Shops and reported stock nearby.</span><span class="card-arrow">↗</span></button>
+          <button class="service-card" data-action="track" type="button"><span class="card-number">03</span><span class="service-icon">◷</span><strong data-i18n="serviceTrack">Track a request</strong><span data-i18n="serviceTrackText">Follow an application or complaint without calling around.</span><span class="card-arrow">↗</span></button>
+          <button class="service-card" data-action="complaint" type="button"><span class="card-number">04</span><span class="service-icon">!</span><strong data-i18n="serviceComplaint">Report a problem</strong><span data-i18n="serviceComplaintText">Tell us what happened and keep a ticket reference.</span><span class="card-arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section class="journey-section" id="journey" aria-live="polite">
+        <div class="journey-intro"><p class="eyebrow" data-i18n="journeyEyebrow">A gentler first step</p><h2 id="journey-title" data-i18n="journeyTitle">See your monthly entitlement</h2><p id="journey-description" data-i18n="journeyText">Use the demo reference below to experience the complete citizen journey. In production, this becomes a consent-based state service connection.</p></div>
+        <div class="journey-panel" id="journey-panel"></div>
+      </section>
+
+      <section class="section split-section" id="how-it-works">
+        <div><p class="eyebrow" data-i18n="howEyebrow">Designed for real life</p><h2 data-i18n="howTitle">When the network is weak, the instructions shouldn’t be.</h2><p class="body-copy" data-i18n="howText">JanRation keeps the most important answer close: what you are entitled to, where to go, and what to do if the system says no. Every screen is built for one clear decision.</p><button class="text-button" id="open-help" type="button"><span data-i18n="howCta">See accessibility & safety choices</span> →</button></div>
+        <div class="principles-card"><div class="principle"><span>◉</span><div><strong data-i18n="principleOne">One household view</strong><p data-i18n="principleOneText">A portable card reference, entitlement, shop, and history in one place.</p></div></div><div class="principle"><span>अ</span><div><strong data-i18n="principleTwo">Language that follows you</strong><p data-i18n="principleTwoText">Switch language anytime. Use “listen” for key instructions where supported.</p></div></div><div class="principle"><span>↺</span><div><strong data-i18n="principleThree">Recovery built in</strong><p data-i18n="principleThreeText">If a service is unavailable, see the last known status and a next-best action.</p></div></div></div>
+      </section>
+
+      <section class="states-section" id="help"><div class="states-copy"><p class="eyebrow" data-i18n="statesEyebrow">One front door, many systems</p><h2 data-i18n="statesTitle">Same simple experience.<br />State-specific answers.</h2><p data-i18n="statesText">Behind the scenes, a standard service layer can connect each state’s existing PDS system without asking citizens to learn 36 different websites.</p></div><div class="state-orbit"><div class="orbit-center">INDIA<br /><small>36 states & UTs</small></div><span class="state-tag tag-a">Tamil Nadu</span><span class="state-tag tag-b">Maharashtra</span><span class="state-tag tag-c">Jammu & Kashmir</span><span class="state-tag tag-d">+ 33 more</span></div></section>
+    </main>
+
+    <footer class="site-footer"><div><a class="brand footer-brand" href="#top"><span class="brand-mark">ज</span><span><strong>JanRation</strong><small data-i18n="footerTag">A concept for better public services</small></span></a><p class="footer-disclaimer" data-i18n="footerDisclaimer">This hackathon prototype is not affiliated with or endorsed by any government department. All displayed records are synthetic.</p></div><div class="footer-links"><a href="#how-it-works" data-i18n="footerAccessibility">Accessibility</a><a href="#help" data-i18n="footerPrivacy">Privacy by design</a><a href="#top" data-i18n="footerFeedback">Give feedback</a></div></footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" type="button" aria-label="Close">×</button><h2 id="modal-title">How JanRation protects people</h2><div id="modal-body"></div></div></div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
