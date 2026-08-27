@@ -29,6 +29,14 @@ The prototype in this repository demonstrates a complete, synthetic citizen flow
 
 The UI also includes English, Hindi, and Tamil switching, browser speech for the entitlement answer where supported, a high-contrast toggle, keyboard-friendly controls, a skip link, mobile layouts, and visible prototype-data disclosure.
 
+### Current iteration shipped in this repository
+
+- A visible reading-help bar now has a real on/off control. It persists in `localStorage`, updates the current screen without resetting the user’s task, changes key service copy into everyday wording, and announces the state through an ARIA live region.
+- Entitlement responses are saved locally after a successful demo lookup. If the API or network fails, the interface shows a clearly dated last-known answer instead of a blank error.
+- The shop list exposes stock freshness, an indicative queue estimate, step-free access, and ONORC support so “nearby” means more than a name and address.
+- A synthetic “I am away from home” flow demonstrates the next ONORC/migrant-worker journey through a common `/api/portability` contract.
+- `/api/states` makes the state-adapter boundary visible in the prototype; it is a catalog, not a live government integration.
+
 ## 4. Recommended product scope after the demo
 
 ### Citizen services

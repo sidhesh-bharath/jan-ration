@@ -82,3 +82,38 @@ h1 em { color: var(--coral); font-family: Georgia, serif; font-weight: 400; }
 
 /* Defensive override: keeps entitlement tiles styled even if a legacy selector is parsed strictly. */
 .entitlement-item { background: var(--mint); border-radius: 13px; padding: .9rem; }
+
+/* Reading help is intentionally visible on every screen: it is a working control,
+   not a hidden accessibility preference. */
+.reading-bar { background: #edf5e9; border-bottom: 1px solid var(--line); color: var(--ink); }
+.reading-bar-inner { width: min(1180px, calc(100% - 3rem)); margin: auto; min-height: 48px; display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; padding: .45rem 0; }
+.reading-bar-title { font-size: .74rem; font-weight: 900; letter-spacing: .04em; }
+.reading-bar-hint { color: var(--ink-soft); font-size: .72rem; flex: 1 1 260px; }
+.plain-language-toggle { display: inline-flex; align-items: center; gap: .45rem; min-height: 34px; border: 1px solid #9cb99b; border-radius: 999px; background: var(--paper); color: var(--ink); padding: .35rem .7rem; cursor: pointer; font-size: .73rem; font-weight: 800; }
+.plain-language-toggle:hover, .plain-language-toggle.is-active { background: var(--ink); border-color: var(--ink); color: white; }
+.toggle-dot { width: 9px; height: 9px; border: 2px solid currentColor; border-radius: 50%; }
+.plain-language-toggle.is-active .toggle-dot { background: var(--saffron); border-color: var(--saffron); }
+.reading-bar-status, .connection-status { color: var(--ink-soft); font-size: .68rem; white-space: nowrap; }
+.connection-status { border-left: 1px solid var(--line); padding-left: .8rem; }
+.connection-status::before { content: "•"; color: #3c934d; margin-right: .35rem; }
+.connection-status.is-offline::before { color: var(--coral); }
+.plain-language { line-height: 1.65; }
+.plain-language .hero-text, .plain-language .body-copy, .plain-language .section-note { font-size: 1rem; }
+.offline-note { background: #fff5dd; border: 1px solid #e1bf78; border-radius: 13px; padding: .85rem; margin-bottom: 1rem; color: var(--ink); }
+.offline-note p { margin: .25rem 0; color: var(--ink-soft); font-size: .8rem; }
+.offline-note small { color: var(--saffron-dark); font-weight: 800; }
+.source-line { margin-top: -.3rem; }
+.shop-tags { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .55rem; }
+.shop-tags span { background: var(--mint); border-radius: 999px; padding: .25rem .45rem; font-size: .65rem; color: var(--ink-soft); }
+.portability-result { background: var(--mint); border-radius: 13px; padding: .9rem; margin-top: .8rem; }
+.portability-result ol { margin: .65rem 0; padding-left: 1.2rem; color: var(--ink-soft); font-size: .82rem; }
+.portability-result li { margin: .3rem 0; }
+.service-card-wide { grid-column: span 2; min-height: 190px; }
+
+@media (max-width: 620px) {
+  .reading-bar-inner { width: min(100% - 2rem, 1180px); align-items: flex-start; }
+  .reading-bar-hint { flex-basis: 100%; order: 3; }
+  .reading-bar-status { order: 4; }
+  .connection-status { margin-left: auto; order: 4; }
+  .service-card-wide { grid-column: span 2; min-height: 190px; }
+}

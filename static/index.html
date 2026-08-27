@@ -12,6 +12,18 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="demo-banner"><span class="pulse-dot"></span> Prototype mode · Synthetic data only · Not an official government website</div>
 
+    <div class="reading-bar" role="region" aria-label="Reading options">
+      <div class="reading-bar-inner">
+        <span class="reading-bar-title" data-i18n="plainLanguageTitle">Reading help</span>
+        <span class="reading-bar-hint" data-i18n="plainLanguageHint">Turn this on to replace official terms with everyday words.</span>
+        <button class="plain-language-toggle" id="plain-language-toggle" type="button" aria-pressed="false">
+          <span class="toggle-dot" aria-hidden="true"></span><span data-plain-label>Use simpler words</span>
+        </button>
+        <span class="reading-bar-status" id="plain-language-status" role="status" aria-live="polite">Standard wording is on.</span>
+        <span class="connection-status" id="connection-status" aria-live="polite">Demo service online</span>
+      </div>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="#top" aria-label="JanRation home">
         <span class="brand-mark" aria-hidden="true">ज</span>
@@ -64,6 +76,7 @@
           <button class="service-card" data-action="shops" type="button"><span class="card-number">02</span><span class="service-icon">⌖</span><strong data-i18n="serviceShop">Find a shop</strong><span data-i18n="serviceShopText">See open Fair Price Shops and reported stock nearby.</span><span class="card-arrow">↗</span></button>
           <button class="service-card" data-action="track" type="button"><span class="card-number">03</span><span class="service-icon">◷</span><strong data-i18n="serviceTrack">Track a request</strong><span data-i18n="serviceTrackText">Follow an application or complaint without calling around.</span><span class="card-arrow">↗</span></button>
           <button class="service-card" data-action="complaint" type="button"><span class="card-number">04</span><span class="service-icon">!</span><strong data-i18n="serviceComplaint">Report a problem</strong><span data-i18n="serviceComplaintText">Tell us what happened and keep a ticket reference.</span><span class="card-arrow">↗</span></button>
+          <button class="service-card service-card-wide" data-action="migrant" type="button"><span class="card-number">05</span><span class="service-icon">↔</span><strong data-i18n="serviceMigrant">I am away from home</strong><span data-i18n="serviceMigrantText">Use ONORC portability when you are working in another state.</span><span class="card-arrow">↗</span></button>
         </div>
       </section>
 
@@ -83,6 +96,7 @@
     <footer class="site-footer"><div><a class="brand footer-brand" href="#top"><span class="brand-mark">ज</span><span><strong>JanRation</strong><small data-i18n="footerTag">A concept for better public services</small></span></a><p class="footer-disclaimer" data-i18n="footerDisclaimer">This hackathon prototype is not affiliated with or endorsed by any government department. All displayed records are synthetic.</p></div><div class="footer-links"><a href="#how-it-works" data-i18n="footerAccessibility">Accessibility</a><a href="#help" data-i18n="footerPrivacy">Privacy by design</a><a href="#top" data-i18n="footerFeedback">Give feedback</a></div></footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="sr-only" id="live-region" aria-live="polite" aria-atomic="true"></div>
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" type="button" aria-label="Close">×</button><h2 id="modal-title">How JanRation protects people</h2><div id="modal-body"></div></div></div>
     <script src="/static/app.js" defer></script>
   </body>

@@ -27,11 +27,14 @@ pytest -q
 - Four core tasks: entitlement, shop discovery, request tracking, and grievance reporting
 - Synthetic FastAPI endpoints with clear demo-mode behavior
 - English, Hindi, and Tamil UI switching
+- A working, persistent plain-language reading bar that rewrites key service copy and announces its state to screen readers
 - High-contrast mode, keyboard-friendly controls, skip link, readable error states, and browser speech for the entitlement answer
+- Last-known entitlement rendering from device storage when the demo API is unavailable
+- Synthetic ONORC migrant mode, state-adapter catalog, queue estimates, stock freshness, accessibility and portability signals for shops
 - No external fonts, images, analytics, government logos, or live PDS calls
 
 Read [PROJECT_PLAN.md](PROJECT_PLAN.md) for the product thesis, portal analysis, architecture, roadmap, reliability plan, safety boundaries, and hackathon demo strategy.
 
 ## Next engineering step
 
-Add Playwright smoke tests for the main mobile and desktop journeys, then extract the front-end copy into versioned translation files reviewed by native speakers. Only after that should you implement state adapters behind the existing API contract.
+Add Playwright smoke tests for the main mobile and desktop journeys, then extract the front-end copy into versioned translation files reviewed by native speakers. Only after that should you implement live state adapters behind the existing API contract.

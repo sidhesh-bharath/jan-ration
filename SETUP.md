@@ -35,6 +35,14 @@ brew install python git
 
 Install Python from python.org and tick **Add Python to PATH** during setup. Install Git from git-scm.com. Use PowerShell for the commands below.
 
+Verify the installations before creating the environment:
+
+```powershell
+py --version
+git --version
+node --version    # optional, for Playwright smoke tests
+```
+
 ## Project install and run
 
 From the project directory:
@@ -46,6 +54,16 @@ source .venv/bin/activate            # macOS/Linux
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 uvicorn app:app --reload
+```
+
+On Windows PowerShell, use the equivalent commands:
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m uvicorn app:app --reload
 ```
 
 Open `http://127.0.0.1:8000` and use `DEMO-7824`. Do not enter a real ration card number, Aadhaar number, OTP, phone number, or payment detail into this prototype.

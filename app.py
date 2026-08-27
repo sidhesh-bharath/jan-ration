@@ -43,6 +43,8 @@ DEMO_ENTITLEMENT = {
     ],
     "next_distribution": "1–30 Sep 2026",
     "shop_reference": "TN-CHN-1042",
+    "source": "Tamil Nadu adapter (synthetic)",
+    "source_status": "Live demo record",
 }
 
 SHOPS = [
@@ -56,6 +58,10 @@ SHOPS = [
         "hours": "8:00–13:00 · 16:00–18:00",
         "status": "Open today",
         "stock_note": "Rice and wheat reported available",
+        "stock_updated": "Today, 08:40",
+        "queue_minutes": 12,
+        "wheelchair_accessible": True,
+        "onorc_enabled": True,
     },
     {
         "name": "Makkal Sevai PDS Centre",
@@ -67,6 +73,10 @@ SHOPS = [
         "hours": "9:00–13:00 · 15:00–18:00",
         "status": "Open today",
         "stock_note": "All listed items reported available",
+        "stock_updated": "Today, 09:05",
+        "queue_minutes": 24,
+        "wheelchair_accessible": False,
+        "onorc_enabled": True,
     },
     {
         "name": "Jan Aahar Centre",
@@ -78,7 +88,17 @@ SHOPS = [
         "hours": "9:00–17:00",
         "status": "Open today",
         "stock_note": "Rice and dal reported available",
+        "stock_updated": "Yesterday, 16:20",
+        "queue_minutes": 8,
+        "wheelchair_accessible": True,
+        "onorc_enabled": False,
     },
+]
+
+STATE_ADAPTERS = [
+    {"code": "TN", "name": "Tamil Nadu", "adapter": "tnpds", "status": "demo-ready"},
+    {"code": "MH", "name": "Maharashtra", "adapter": "mahafood", "status": "demo-ready"},
+    {"code": "JK", "name": "Jammu and Kashmir", "adapter": "aepds-jk", "status": "planned"},
 ]
 
 
@@ -89,7 +109,40 @@ def home() -> FileResponse:
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "mode": "demo", "message": "JanRation API is ready"}
+    return {
+        "status": "ok",
+        "mode": "demo",
+        "message": "JanRation API is ready",
+        "data_policy": "synthetic-only",
+    }
+
+
+@app.get("/api/states")
+def states() -> dict:
+    """Expose the common adapter contract used by the unified front door."""
+    return {"count": len(STATE_ADAPTERS), "states": STATE_ADAPTERS}
+
+
+@app.get("/api/portability")
+def portability(home_state: str = Query(..., min_length=2), current_state: str = Query(..., min_length=2)) -> dict:
+    """Return synthetic ONORC guidance without contacting a live PDS system."""
+    same_state = home_state.strip().lower() == current_state.strip().lower()
+    return {
+        "eligible": True,
+        "home_state": home_state.strip(),
+        "current_state": current_state.strip(),
+        "message": (
+            "You can use your home-state entitlement at an ONORC-enabled shop here."
+            if not same_state
+            else "You can collect from a nearby shop in your home state."
+        ),
+        "steps": [
+            "Take your ration card or state-approved reference.",
+            "Ask for an ONORC-enabled Fair Price Shop.",
+            "Check the quantity shown before confirming the lift.",
+        ],
+        "shop_reference": "TN-CHN-1042" if not same_state else DEMO_ENTITLEMENT["shop_reference"],
+    }
 
 
 @app.post("/api/entitlement")
