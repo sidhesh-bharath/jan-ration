@@ -1,27 +1,24 @@
 # JanRation deployment
 
-## Recommended hackathon path: Render
+## Recommended hackathon path: Vercel
 
-Render is a good fit for this monolithic prototype because one public web service can serve the consumer portal, `/developers`, FastAPI `/docs`, and the synthetic API under the same origin. That avoids CORS and split-host surprises during judging.
+Vercel serves the consumer portal, `/developers`, FastAPI `/docs`, and synthetic API through `api/index.py` on one origin. This avoids CORS and free-service spin-down behavior.
 
 ### Deploy from GitHub
 
-1. Create a GitHub repository and push this project.
-2. Create a new **Web Service** in Render and select the repository.
-3. Choose the Python runtime.
-4. Use these commands if Render does not detect `render.yaml`:
-   - Build: `pip install -r requirements.txt`
-   - Start: `uvicorn app:app --host 0.0.0.0 --port $PORT`
-5. Set the health check path to `/api/health`.
-6. Deploy and open the generated HTTPS URL.
+1. Import the repository into Vercel.
+2. Keep the project root at the repository root; `vercel.json` selects the Python entrypoint.
+3. Add `JANRATION_DEMO_RESET_TOKEN` as an environment variable.
+4. Deploy and open the generated HTTPS URL.
 7. Test these public URLs before sharing:
    - `/` — cardholder portal
    - `/developers` — developer portal
    - `/docs` — interactive API reference
    - `/api/health` — deployment health check
+   - `/api/shops?state=Tamil%20Nadu` — public synthetic shop directory
 8. Record the demo instructions somewhere visible: `DEMO-7824`, dummy OTP `246810`, and “synthetic data only”.
 
-The included `render.yaml` can be used as a Blueprint configuration. The `Dockerfile` is an alternative if the team prefers an explicit container build.
+The legacy `render.yaml` and `Dockerfile` remain available for local/container fallback.
 
 ## Public launch checklist
 

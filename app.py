@@ -1,4 +1,5 @@
 from copy import deepcopy
+import os
 from pathlib import Path
 from time import time
 from typing import Optional
@@ -108,6 +109,8 @@ COMPLAINTS = [
     {"ticket": "JR-19D8F0", "category": "Shop was closed", "shop": "Makkal Sevai PDS Centre", "created": "22 Jul 2026", "status": "Resolved", "status_key": "resolved", "update": "Opening hours were updated. Thank you for reporting this."},
     {"ticket": "JR-8C207B", "category": "Authentication failed", "shop": "Sri Murugan Fair Price Shop", "created": "08 Jun 2026", "status": "Closed", "status_key": "closed", "update": "A retry was recorded with no deduction from your entitlement."},
 ]
+
+INITIAL_COMPLAINTS = deepcopy(COMPLAINTS)
 
 STATE_ADAPTERS = [
     {"code": "TN", "name": "Tamil Nadu", "adapter": "tnpds", "status": "demo-ready", "last_sync": "09:12 IST"},
@@ -248,6 +251,16 @@ def shops(
     return {"count": len(matches), "shops": deepcopy(matches), "data_status": "synthetic"}
 
 
+@app.get("/api/shops/")
+def shops_with_trailing_slash(
+    state: Optional[str] = Query(default=None),
+    district: Optional[str] = Query(default=None),
+    onorc_only: bool = Query(default=False),
+) -> dict:
+    """Slash-tolerant alias for clients and hosted proxies that normalize URLs."""
+    return shops(state=state, district=district, onorc_only=onorc_only)
+
+
 @app.get("/api/complaints")
 def complaints() -> dict:
     return {"count": len(COMPLAINTS), "complaints": deepcopy(COMPLAINTS), "data_status": "synthetic"}
@@ -267,6 +280,19 @@ def create_complaint(payload: ComplaintCreate) -> dict:
     }
     COMPLAINTS.insert(0, record)
     return {"ok": True, "complaint": deepcopy(record), "message": "Your synthetic complaint has been recorded."}
+
+
+@app.post("/api/demo/reset")
+def reset_demo_data(x_demo_reset_token: Optional[str] = Header(default=None)) -> dict[str, object]:
+    """Reset synthetic complaints, updates, and event logs for hackathon testing."""
+    expected = os.getenv("JANRATION_DEMO_RESET_TOKEN", "demo-reset-token")
+    if x_demo_reset_token != expected:
+        raise HTTPException(status_code=401, detail="A valid demo reset token is required.")
+    COMPLAINTS.clear()
+    COMPLAINTS.extend(deepcopy(INITIAL_COMPLAINTS))
+    transaction_events.clear()
+    stock_events.clear()
+    return {"ok": True, "message": "Synthetic complaints, updates, and event logs reset.", "complaints": len(COMPLAINTS)}
 
 
 @app.get("/api/portability")
