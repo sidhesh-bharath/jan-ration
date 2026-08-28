@@ -20,7 +20,8 @@ def test_home_and_developer_routes_are_branded():
     assert client.get("/developers").status_code == 200
     developer_html = (STATIC_DIR / "developers.html").read_text(encoding="utf-8")
     assert "JanRation" in developer_html
-    assert "janration.onrender.com" in developer_html
+    assert "jan-ration.vercel.app" in developer_html
+    assert "onrender.com" not in developer_html
     assert "YOUR-RENDER-SERVICE" not in developer_html
     portal_html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     assert 'id="plain-language-toggle"' in portal_html
@@ -59,6 +60,12 @@ def test_shop_filter_and_map_metadata():
     assert shop["reference"] == "MH-PUN-2408"
     assert shop["map_x"] == 43
     assert shop["onorc_enabled"] is True
+
+
+def test_shop_endpoint_accepts_trailing_slash_and_demo_reset_is_protected():
+    assert client.get("/api/shops/", params={"state": "Tamil Nadu"}).status_code == 200
+    assert client.post("/api/demo/reset").status_code == 401
+    assert client.post("/api/demo/reset", headers={"X-Demo-Reset-Token": "demo-reset-token"}).status_code == 200
 
 
 def test_complaints_are_prepopulated_and_new_ticket_is_trackable():
